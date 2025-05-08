@@ -21,4 +21,20 @@ public class InMemoryExecutorTests
 
         _executor = serviceProvider.GetRequiredService<IExecutor>();
     }
+
+    [Test]
+    public async Task Test1()
+    {
+        // Create a table and insert a record
+        await _executor.ExecuteAsync(@"
+        CREATE TABLE Users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            full_name TEXT
+        );
+        INSERT INTO Users (full_name) VALUES ('John Doe');
+        ");
+
+        // Select the record
+        var result = await _executor.ExecuteAsync<int>("SELECT COUNT(*) FROM Users");
+    }
 }
