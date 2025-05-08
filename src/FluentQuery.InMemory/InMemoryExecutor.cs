@@ -4,12 +4,17 @@ namespace FluentQuery.InMemory;
 
 public class InMemoryExecutor : IExecutor
 {
-    public Task ExecuteAsync(string sql)
+    public Task ExecuteNonQueryAsync(string sql)
     {
         throw new NotImplementedException();
     }
 
-    public Task<T> ExecuteAsync<T>(string sql)
+    public Task<dynamic> ExecuteAsync(string query)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<T> ExecuteAsync<T>(string query)
     {
         throw new NotImplementedException();
     }
