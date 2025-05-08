@@ -2,5 +2,7 @@
 
 public interface IExecutor
 {
-    public Task ExecuteAsync<T>(string sql);
+    public Task ExecuteAsync(string sql);
+
+    public Task<T> ExecuteAsync<T>(string sql);
 }
