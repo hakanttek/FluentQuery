@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentQuery", "FluentQuery\FluentQuery.csproj", "{11C29010-E1B4-46AC-A051-6FC80213E5A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11C29010-E1B4-46AC-A051-6FC80213E5A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11C29010-E1B4-46AC-A051-6FC80213E5A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11C29010-E1B4-46AC-A051-6FC80213E5A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11C29010-E1B4-46AC-A051-6FC80213E5A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {752E44E1-02EF-4463-B808-F6F1499EA95F}
+	EndGlobalSection
+EndGlobal
