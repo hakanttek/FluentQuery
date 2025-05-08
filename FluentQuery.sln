@@ -9,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentQuery.InMemory", "src\FluentQuery.InMemory\FluentQuery.InMemory.csproj", "{16C3D73A-F48C-4465-A875-BA381AD7BBF6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentQuery.Tests", "tests\FluentQuery.Tests\FluentQuery.Tests.csproj", "{258484FE-4D13-4A54-B66C-3395CBA281C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0DAB7433-3E81-4A66-AA51-D80852761058}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,10 @@ Global
 		{16C3D73A-F48C-4465-A875-BA381AD7BBF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16C3D73A-F48C-4465-A875-BA381AD7BBF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16C3D73A-F48C-4465-A875-BA381AD7BBF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{258484FE-4D13-4A54-B66C-3395CBA281C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{258484FE-4D13-4A54-B66C-3395CBA281C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{258484FE-4D13-4A54-B66C-3395CBA281C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{258484FE-4D13-4A54-B66C-3395CBA281C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{11C29010-E1B4-46AC-A051-6FC80213E5A5} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{16C3D73A-F48C-4465-A875-BA381AD7BBF6} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{258484FE-4D13-4A54-B66C-3395CBA281C8} = {0DAB7433-3E81-4A66-AA51-D80852761058}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {752E44E1-02EF-4463-B808-F6F1499EA95F}
