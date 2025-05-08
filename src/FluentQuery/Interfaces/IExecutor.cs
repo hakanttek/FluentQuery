@@ -4,7 +4,5 @@ public interface IExecutor
 {
     public Task ExecuteNonQueryAsync(string sql);
 
-    public Task<dynamic> ExecuteAsync(string query);
-
-    public Task<T> ExecuteAsync<T>(string query);
+    public IDictionary<string, object?> ExecuteAsync(string query);
 }
