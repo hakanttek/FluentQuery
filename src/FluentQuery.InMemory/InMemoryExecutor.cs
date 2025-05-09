@@ -4,7 +4,7 @@ namespace FluentQuery.InMemory;
 
 public class InMemoryExecutor : IExecutor
 {
-    public Task ExecuteNonQueryAsync(string sql)
+    public Task ExecuteNonQueryAsync(string query)
     {
         throw new NotImplementedException();
     }
