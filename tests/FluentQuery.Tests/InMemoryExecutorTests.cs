@@ -22,19 +22,33 @@ public class InMemoryExecutorTests
         _executor = serviceProvider.GetRequiredService<IExecutor>();
     }
 
-    [Test]
-    public async Task Test1()
-    {
-        // Create a table and insert a record
-        await _executor.ExecuteAsync(@"
+    [TestCase(@"
         CREATE TABLE Users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            full_name TEXT
+            Id INTEGER PRIMARY KEY AUTOINCREMENT,
+            FullName TEXT
         );
-        INSERT INTO Users (full_name) VALUES ('John Doe');
-        ");
+        INSERT INTO Users (FullName) VALUES ('John Doe');
+        ",
+        "SELECT * FROM Users",
+        "FullName",
+        "John Doe",
+        TestName = "UserTable")]
+    public async Task ExecuteAsync_ShouldCreateTable_InsertEntity_AndReturnExpectedResult(
+        string createTableSql,
+        string selectAllSql,
+        string key,
+        string value)
+    {
+        // Act
+        await _executor.ExecuteAsync(createTableSql);
+        var result = await _executor.ExecuteAsync(selectAllSql);
 
-        // Select the record
-        var result = await _executor.ExecuteAsync<int>("SELECT COUNT(*) FROM Users");
+        // Assert
+        Assert.Multiple(() =>
+        {
+            Assert.That(result.TryGetValue(key, out var fullnames), Is.True);
+            Assert.That(fullnames, Is.Not.Null);
+            Assert.That(fullnames, Does.Contain(value));
+        });
     }
 }
