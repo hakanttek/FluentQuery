@@ -1,4 +1,4 @@
-﻿namespace FluentQuery.Interfaces;
+﻿namespace FluentQuery.InMemory.Interfaces;
 
 public interface IColumnMapper
 {
