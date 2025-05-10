@@ -9,7 +9,7 @@ public class InMemoryExecutor : IExecutor
         throw new NotImplementedException();
     }
 
-    public Task<T> ExecuteAsync<T>(string query)
+    public Task<T?> ExecuteAsync<T>(string query)
     {
         throw new NotImplementedException();
     }
