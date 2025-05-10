@@ -4,14 +4,20 @@ namespace FluentQuery;
 
 public abstract class ExecutorBase : IExecutor
 {
-    protected IResultMapper Mapper;
+    protected IColumnMapper Mapper;
 
-    protected ExecutorBase(IResultMapper mapper)
+    protected ExecutorBase(IColumnMapper mapper)
     {
         Mapper = mapper;
     }
 
-    public abstract Task<IDictionary<string, IEnumerable<object?>>> ExecuteAsync(string query);
+    public Task ExecuteNonQueryAsync(string query)
+    {
+        throw new NotImplementedException();
+    }
 
-    public abstract Task ExecuteNonQueryAsync(string query);
+    public Task<T?> ExecuteAsync<T>(string query)
+    {
+        throw new NotImplementedException();
+    }
 }

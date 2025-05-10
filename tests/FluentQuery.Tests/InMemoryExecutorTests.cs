@@ -1,5 +1,6 @@
 ﻿using FluentQuery.InMemory;
 using FluentQuery.Interfaces;
+using FluentQuery.Tests.Mock;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FluentQuery.Tests;
@@ -40,15 +41,15 @@ public class InMemoryExecutorTests
         string value)
     {
         // Act
-        await _executor.ExecuteAsync(createTableSql);
-        var result = await _executor.ExecuteAsync(selectAllSql);
+        await _executor.ExecuteAsync<User>(createTableSql);
+        var user = await _executor.ExecuteAsync<User>(selectAllSql);
 
         // Assert
         Assert.Multiple(() =>
         {
-            Assert.That(result.TryGetValue(key, out var fullnames), Is.True);
-            Assert.That(fullnames, Is.Not.Null);
-            Assert.That(fullnames, Does.Contain(value));
+            Assert.That(user, Is.Not.Null);
+            Assert.That(user?.Id, Is.Not.Null);
+            Assert.That(user?.FullName, Is.EqualTo("John Doe"));
         });
     }
 }
