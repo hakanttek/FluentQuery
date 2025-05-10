@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using FluentQuery.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using SQLitePCL;
 
@@ -6,9 +6,9 @@ namespace FluentQuery.InMemory;
 
 public static class DependencyInjection
 {
-    public static void UseInMemory(this ExecutorOptions options)
+    public static void AddInMemoryExecutor(this IServiceCollection services)
     {
-        options.Use<InMemoryExecutor>(ServiceLifetime.Singleton);
+        services.AddScoped<IExecutor, InMemoryExecutor>();
         Batteries.Init();
     }
 }

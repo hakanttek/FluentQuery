@@ -2,6 +2,7 @@
 using FluentQuery.Interfaces;
 using FluentQuery.Tests.Mock;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace FluentQuery.Tests;
 
@@ -13,10 +14,9 @@ public class InMemoryExecutorTests
     public void Setup()
     {
         var services = new ServiceCollection();
-        services.AddFluentQuery(options =>
-        {
-            options.UseInMemory();
-        });
+        services.AddFluentQuery();
+
+        services.AddInMemoryExecutor();
 
         var serviceProvider = services.BuildServiceProvider();
 
