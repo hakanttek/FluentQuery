@@ -13,9 +13,15 @@ public class InMemoryExecutor : IExecutor
         _mapper = mapper;
     }
 
-    public Task ExecuteNonQueryAsync(string query)
+    public async Task ExecuteNonQueryAsync(string query)
     {
-        throw new NotImplementedException();
+        using var connection = new SqliteConnection("Data Source=:memory:");
+        await connection.OpenAsync();
+
+        using var command = connection.CreateCommand();
+        command.CommandText = query;
+
+        await command.ExecuteNonQueryAsync();
     }
 
     public async IAsyncEnumerable<T> ExecuteAsync<T>(string query)
