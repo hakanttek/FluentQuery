@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace FluentQuery.Interfaces;
+﻿namespace FluentQuery.Interfaces;
 
 public interface IExecutor
 {
-    public Task ExecuteNonQueryAsync(string query, CancellationToken cancellation);
+    public Task ExecuteNonQueryAsync(string query, CancellationToken cancellation = default);
 
-    public IAsyncEnumerable<T> Execute<T>(string query, CancellationToken cancellation);
+    public IAsyncEnumerable<T> Execute<T>(string query, CancellationToken cancellation = default);
 }

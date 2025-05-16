@@ -14,7 +14,7 @@ public class InMemoryExecutor : IExecutor
         _mapper = mapper;
     }
 
-    public async Task ExecuteNonQueryAsync(string query, CancellationToken cancellation)
+    public async Task ExecuteNonQueryAsync(string query, CancellationToken cancellation = default)
     {
         using var connection = new SqliteConnection("Data Source=:memory:");
         await connection.OpenAsync(cancellation);
@@ -25,7 +25,7 @@ public class InMemoryExecutor : IExecutor
         await command.ExecuteNonQueryAsync(cancellation);
     }
 
-    public async IAsyncEnumerable<T> Execute<T>(string query, [EnumeratorCancellation] CancellationToken cancellation)
+    public async IAsyncEnumerable<T> Execute<T>(string query, [EnumeratorCancellation] CancellationToken cancellation = default)
     {
         using var connection = new SqliteConnection("Data Source=:memory:");
         await connection.OpenAsync(cancellation);
@@ -33,7 +33,7 @@ public class InMemoryExecutor : IExecutor
         using var command = connection.CreateCommand();
         command.CommandText = query;
 
-        using var reader = await command.ExecuteReaderAsync(cancellation);
+        using var reader = await command.ExecuteReaderAsync(cancellation = default);
 
         while (await reader.ReadAsync(cancellation))
         {
