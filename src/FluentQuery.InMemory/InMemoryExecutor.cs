@@ -18,10 +18,8 @@ public class InMemoryExecutor : IExecutor
         throw new NotImplementedException();
     }
 
-    public async Task<IEnumerable<T>> ExecuteAsync<T>(string query)
+    public async IAsyncEnumerable<T> ExecuteAsync<T>(string query)
     {
-        var results = new List<T>();
-
         using var connection = new SqliteConnection("Data Source=:memory:");
         await connection.OpenAsync();
 
@@ -32,9 +30,9 @@ public class InMemoryExecutor : IExecutor
 
         while (await reader.ReadAsync())
         {
-            results.Add(_mapper.Map<T>(reader));
+            var obj = _mapper.Map<T>(reader);
+            if (obj != null)
+                yield return obj;
         }
-
-        return results;
     }
 }

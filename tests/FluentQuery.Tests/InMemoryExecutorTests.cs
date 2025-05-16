@@ -41,8 +41,8 @@ public class InMemoryExecutorTests
         string value)
     {
         // Act
-        await _executor.ExecuteAsync<User>(createTableSql);
-        var users = await _executor.ExecuteAsync<User>(selectAllSql);
+        await _executor.ExecuteNonQueryAsync(createTableSql);
+        var users = await _executor.ExecuteAsync<User>(selectAllSql).ToListAsync();
         var user = users.FirstOrDefault();
 
         // Assert
