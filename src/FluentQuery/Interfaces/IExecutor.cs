@@ -4,7 +4,7 @@ namespace FluentQuery.Interfaces;
 
 public interface IExecutor
 {
-    public Task ExecuteNonQueryAsync(string query);
+    public Task ExecuteNonQueryAsync(string query, CancellationToken cancellation);
 
-    public IAsyncEnumerable<T> ExecuteAsync<T>(string query);
+    public IAsyncEnumerable<T> Execute<T>(string query, CancellationToken cancellation);
 }

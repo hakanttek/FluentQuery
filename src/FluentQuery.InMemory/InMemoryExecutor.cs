@@ -1,6 +1,7 @@
 ﻿using FluentQuery.InMemory.Interfaces;
 using FluentQuery.Interfaces;
 using Microsoft.Data.Sqlite;
+using System.Runtime.CompilerServices;
 
 namespace FluentQuery.InMemory;
 
@@ -13,32 +14,30 @@ public class InMemoryExecutor : IExecutor
         _mapper = mapper;
     }
 
-    public async Task ExecuteNonQueryAsync(string query)
+    public async Task ExecuteNonQueryAsync(string query, CancellationToken cancellation)
     {
         using var connection = new SqliteConnection("Data Source=:memory:");
-        await connection.OpenAsync();
+        await connection.OpenAsync(cancellation);
 
         using var command = connection.CreateCommand();
         command.CommandText = query;
 
-        await command.ExecuteNonQueryAsync();
+        await command.ExecuteNonQueryAsync(cancellation);
     }
 
-    public async IAsyncEnumerable<T> ExecuteAsync<T>(string query)
+    public async IAsyncEnumerable<T> Execute<T>(string query, [EnumeratorCancellation] CancellationToken cancellation)
     {
         using var connection = new SqliteConnection("Data Source=:memory:");
-        await connection.OpenAsync();
+        await connection.OpenAsync(cancellation);
 
         using var command = connection.CreateCommand();
         command.CommandText = query;
 
-        using var reader = await command.ExecuteReaderAsync();
+        using var reader = await command.ExecuteReaderAsync(cancellation);
 
-        while (await reader.ReadAsync())
+        while (await reader.ReadAsync(cancellation))
         {
-            var obj = _mapper.Map<T>(reader);
-            if (obj != null)
-                yield return obj;
+            yield return _mapper.Map<T>(reader);
         }
     }
 }
