@@ -42,7 +42,8 @@ public class InMemoryExecutorTests
     {
         // Act
         await _executor.ExecuteAsync<User>(createTableSql);
-        var user = await _executor.ExecuteAsync<User>(selectAllSql);
+        var users = await _executor.ExecuteAsync<User>(selectAllSql);
+        var user = users.FirstOrDefault();
 
         // Assert
         Assert.Multiple(() =>
