@@ -1,5 +1,4 @@
-﻿using FluentQuery.InMemory.Interfaces;
-using FluentQuery.Interfaces;
+﻿using FluentQuery.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using SQLitePCL;
 

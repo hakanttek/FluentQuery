@@ -1,7 +1,7 @@
-﻿using FluentQuery.InMemory.Interfaces;
+﻿using FluentQuery.Interfaces;
 using System.Data.Common;
 
-namespace FluentQuery.InMemory;
+namespace FluentQuery;
 
 public class ColumnMapper : IColumnMapper
 {

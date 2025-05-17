@@ -1,6 +1,6 @@
 ﻿using System.Data.Common;
 
-namespace FluentQuery.InMemory.Interfaces;
+namespace FluentQuery.Interfaces;
 
 public interface IColumnMapper
 {
