@@ -16,7 +16,8 @@ public class InMemoryExecutor : IExecutor
 
     public async Task ExecuteNonQueryAsync(string query, CancellationToken cancellation = default)
     {
-        using var connection = new SqliteConnection("Data Source=:memory:");
+        using var connection = new SqliteConnection("Data Source=file:memdb1?mode=memory&cache=shared");
+
         await connection.OpenAsync(cancellation);
 
         using var command = connection.CreateCommand();
@@ -27,13 +28,14 @@ public class InMemoryExecutor : IExecutor
 
     public async IAsyncEnumerable<T> Execute<T>(string query, [EnumeratorCancellation] CancellationToken cancellation = default)
     {
-        using var connection = new SqliteConnection("Data Source=:memory:");
+        using var connection = new SqliteConnection("Data Source=file:memdb1?mode=memory&cache=shared");
+
         await connection.OpenAsync(cancellation);
 
         using var command = connection.CreateCommand();
         command.CommandText = query;
 
-        using var reader = await command.ExecuteReaderAsync(cancellation = default);
+        using var reader = await command.ExecuteReaderAsync(cancellation);
 
         while (await reader.ReadAsync(cancellation))
         {
