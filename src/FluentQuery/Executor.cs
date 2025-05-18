@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace FluentQuery;
 
-public class Executor<TDbConnection> : IExecutor where TDbConnection : DbConnection
+public class Executor<TDbConnection> : IExecutor<TDbConnection>, IExecutor where TDbConnection : DbConnection
 {
     private readonly IColumnMapper _mapper;
 

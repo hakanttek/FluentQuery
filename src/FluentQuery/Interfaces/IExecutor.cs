@@ -7,6 +7,6 @@ public interface IExecutor
     public IAsyncEnumerable<T> Execute<T>(string query, CancellationToken cancellation = default);
 }
 
-public interface IExecutor<TExecutorOptions> : IExecutor where TExecutorOptions : ExecutorOptions
+public interface IExecutor<TExecutorOptions> : IExecutor
 {
 }
