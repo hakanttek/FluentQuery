@@ -1,21 +1,24 @@
 ﻿using FluentQuery.Interfaces;
-using Microsoft.Data.Sqlite;
 using System.Runtime.CompilerServices;
+using System.Data.Common;
 
-namespace FluentQuery.InMemory;
+namespace FluentQuery;
 
-public class InMemoryExecutor : IExecutor
+public class Executor<TDbConnection> : IExecutor where TDbConnection : DbConnection
 {
     private readonly IColumnMapper _mapper;
 
-    public InMemoryExecutor(IColumnMapper mapper)
+    private readonly IConnectionBuilder<TDbConnection> _cnnBuilder;
+
+    public Executor(IColumnMapper mapper, IConnectionBuilder<TDbConnection> connectionBuilder)
     {
         _mapper = mapper;
+        _cnnBuilder = connectionBuilder;
     }
 
     public async Task ExecuteNonQueryAsync(string query, CancellationToken cancellation = default)
     {
-        using var connection = new SqliteConnection("Data Source=file:memdb1?mode=memory&cache=shared");
+        var connection = _cnnBuilder.GetConnection();
 
         await connection.OpenAsync(cancellation);
 
@@ -23,11 +26,13 @@ public class InMemoryExecutor : IExecutor
         command.CommandText = query;
 
         await command.ExecuteNonQueryAsync(cancellation);
+
+        await connection.CloseAsync();
     }
 
     public async IAsyncEnumerable<T> Execute<T>(string query, [EnumeratorCancellation] CancellationToken cancellation = default)
     {
-        using var connection = new SqliteConnection("Data Source=file:memdb1?mode=memory&cache=shared");
+        using var connection = _cnnBuilder.GetConnection();
 
         await connection.OpenAsync(cancellation);
 
@@ -40,5 +45,7 @@ public class InMemoryExecutor : IExecutor
         {
             yield return _mapper.Map<T>(reader);
         }
+
+        await connection.CloseAsync();
     }
 }
