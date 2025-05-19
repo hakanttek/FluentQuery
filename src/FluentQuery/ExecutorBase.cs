@@ -48,9 +48,9 @@ public class ExecutorBase<TContext> : IExecutor<TContext> where TContext : Execu
     }
 }
 
-public class Executor : ExecutorBase<ExecutorContext>, IExecutor<ExecutorContext>, IExecutor
+public class ExecutorBase : ExecutorBase<ExecutorContext>, IExecutor<ExecutorContext>, IExecutor
 {
-    public Executor(IColumnMapper mapper, IOptions<ExecutorContext> options) : base(mapper, options)
+    public ExecutorBase(IColumnMapper mapper, IOptions<ExecutorContext> options) : base(mapper, options)
     {
     }
 }

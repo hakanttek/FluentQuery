@@ -10,7 +10,16 @@ public static class DependencyInjection
         options ??= _ => { };
         services.Configure(options);
         services.AddSingleton<IColumnMapper, ColumnMapper>();
-        services.AddSingleton<IExecutor, Executor>();
+        services.AddSingleton<IExecutor, ExecutorBase>();
+        return services;
+    }
+
+    public static IServiceCollection AddFluentQuery<TContext>(this IServiceCollection services)
+        where TContext : ExecutorContext, new()
+    {
+        services.Configure<TContext>(_ => { });
+        services.AddSingleton<IColumnMapper, ColumnMapper>();
+        services.AddSingleton<IExecutor<TContext>, ExecutorBase<TContext>>();
         return services;
     }
 }
