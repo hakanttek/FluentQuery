@@ -7,7 +7,7 @@ namespace FluentQuery.Tests.Mock;
 public class User
 {
     [Column("id")]
-    public int Id { get; set; }
+    public long Id { get; set; }
 
     [Required]
     [Column("full_name")]
