@@ -13,7 +13,7 @@ public class InMemoryExecutor : IExecutor
         _mapper = mapper;
     }
 
-    public async Task ExecuteNonQueryAsync(string query, CancellationToken cancellation = default)
+    public async Task ExecuteAsync(string query, CancellationToken cancellation = default)
     {
         using var connection = new SqliteConnection("Data Source=file:memdb1?mode=memory&cache=shared");
 
