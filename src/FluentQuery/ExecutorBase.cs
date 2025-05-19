@@ -4,21 +4,21 @@ using Microsoft.Extensions.Options;
 
 namespace FluentQuery;
 
-public class Executor<TContext> : IExecutor<TContext> where TContext : ExecutorContext
+public class ExecutorBase<TContext> : IExecutor<TContext> where TContext : ExecutorContext
 {
-    private readonly IColumnMapper _mapper;
+    protected readonly IColumnMapper Mapper;
 
-    private readonly TContext _context;
+    protected readonly TContext Context;
 
-    public Executor(IColumnMapper mapper, IOptions<TContext> contextOptions)
+    public ExecutorBase(IColumnMapper mapper, IOptions<TContext> contextOptions)
     {
-        _mapper = mapper;
-        _context = contextOptions.Value;
+        Mapper = mapper;
+        Context = contextOptions.Value;
     }
 
     public async Task ExecuteNonQueryAsync(string query, CancellationToken cancellation = default)
     {
-        using var connection = await _context.ConnectionFactory.OpenConnectionAsync(cancellation);
+        using var connection = await Context.ConnectionFactory.OpenConnectionAsync(cancellation);
 
         using var command = connection.CreateCommand();
 
@@ -31,7 +31,7 @@ public class Executor<TContext> : IExecutor<TContext> where TContext : ExecutorC
 
     public async IAsyncEnumerable<T> Execute<T>(string query, [EnumeratorCancellation] CancellationToken cancellation = default)
     {
-        using var connection = await _context.ConnectionFactory.OpenConnectionAsync(cancellation);
+        using var connection = await Context.ConnectionFactory.OpenConnectionAsync(cancellation);
 
         using var command = connection.CreateCommand();
 
@@ -41,14 +41,14 @@ public class Executor<TContext> : IExecutor<TContext> where TContext : ExecutorC
 
         while (await reader.ReadAsync(cancellation))
         {
-            yield return _mapper.Map<T>(reader);
+            yield return Mapper.Map<T>(reader);
         }
 
         await connection.CloseAsync();
     }
 }
 
-public class Executor : Executor<ExecutorContext>, IExecutor<ExecutorContext>, IExecutor
+public class Executor : ExecutorBase<ExecutorContext>, IExecutor<ExecutorContext>, IExecutor
 {
     public Executor(IColumnMapper mapper, IOptions<ExecutorContext> options) : base(mapper, options)
     {
