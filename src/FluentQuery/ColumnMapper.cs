@@ -3,6 +3,7 @@ using System.Data.Common;
 
 namespace FluentQuery;
 
+// TODO: Create mapping profile to increasee performance
 public class ColumnMapper : IColumnMapper
 {
     public T Map<T>(DbDataReader reader)
