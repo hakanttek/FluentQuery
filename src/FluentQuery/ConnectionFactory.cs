@@ -1,5 +1,4 @@
-﻿using Microsoft.Data.Sqlite;
-using System.Data.Common;
+﻿using System.Data.Common;
 
 namespace FluentQuery;
 
@@ -27,9 +26,4 @@ public class ConnectionFactory : ConnectionFactory<DbConnection>
     public ConnectionFactory(Func<DbConnection> factory) : base(factory)
     {
     }
-
-    private static readonly string InMemoryDbName = Guid.NewGuid().ToString("N") + "Db";
-
-    public static readonly ConnectionFactory InMemory = new(()
-        => new SqliteConnection($"Data Source=file:{InMemoryDbName}?mode=memory&cache=shared"));
 }

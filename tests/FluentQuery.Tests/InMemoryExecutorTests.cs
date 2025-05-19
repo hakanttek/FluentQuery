@@ -14,9 +14,7 @@ public class InMemoryExecutorTests
     public void Setup()
     {
         var services = new ServiceCollection();
-        services.AddFluentQuery();
-
-        services.AddInMemoryExecutor();
+        services.AddFluentQuery(opt => opt.UseInMemory());
 
         var serviceProvider = services.BuildServiceProvider();
 
