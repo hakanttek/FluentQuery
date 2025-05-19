@@ -2,5 +2,5 @@
 
 public class ExecutorOptions
 {
-    public string ConnectionString { get; set; } = string.Empty;
+    public ConnectionFactory ConnectionFactory { get; set; } = ConnectionFactory.InMemory;
 }

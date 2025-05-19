@@ -7,8 +7,10 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddFluentQuery(this IServiceCollection services, Action<ExecutorOptions>? options = null)
     {
-        services.Configure(options ?? (opt => { }));
+        options ??= _ => { };
+        services.Configure(options);
         services.AddSingleton<IColumnMapper, ColumnMapper>();
+        services.AddSingleton<IExecutor, Executor>();
         return services;
     }
 }

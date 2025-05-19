@@ -1,28 +1,27 @@
 ﻿using FluentQuery.Interfaces;
 using System.Runtime.CompilerServices;
-using System.Data.Common;
+using Microsoft.Extensions.Options;
 
 namespace FluentQuery;
 
-public class Executor<TDbConnection> : IExecutor<TDbConnection>, IExecutor where TDbConnection : DbConnection
+public class Executor : IExecutor
 {
     private readonly IColumnMapper _mapper;
 
-    private readonly IConnectionBuilder<TDbConnection> _cnnBuilder;
+    private readonly ExecutorOptions _options;
 
-    public Executor(IColumnMapper mapper, IConnectionBuilder<TDbConnection> connectionBuilder)
+    public Executor(IColumnMapper mapper, IOptions<ExecutorOptions> options)
     {
         _mapper = mapper;
-        _cnnBuilder = connectionBuilder;
+        _options = options.Value;
     }
 
     public async Task ExecuteNonQueryAsync(string query, CancellationToken cancellation = default)
     {
-        var connection = _cnnBuilder.GetConnection();
-
-        await connection.OpenAsync(cancellation);
+        using var connection = await _options.ConnectionFactory.OpenConnectionAsync(cancellation);
 
         using var command = connection.CreateCommand();
+
         command.CommandText = query;
 
         await command.ExecuteNonQueryAsync(cancellation);
@@ -32,11 +31,10 @@ public class Executor<TDbConnection> : IExecutor<TDbConnection>, IExecutor where
 
     public async IAsyncEnumerable<T> Execute<T>(string query, [EnumeratorCancellation] CancellationToken cancellation = default)
     {
-        using var connection = _cnnBuilder.GetConnection();
-
-        await connection.OpenAsync(cancellation);
+        using var connection = await _options.ConnectionFactory.OpenConnectionAsync(cancellation);
 
         using var command = connection.CreateCommand();
+
         command.CommandText = query;
 
         using var reader = await command.ExecuteReaderAsync(cancellation);
