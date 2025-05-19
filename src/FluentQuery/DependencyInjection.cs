@@ -5,7 +5,7 @@ namespace FluentQuery;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddFluentQuery(this IServiceCollection services, Action<ExecutorOptions>? options = null)
+    public static IServiceCollection AddFluentQuery(this IServiceCollection services, Action<ExecutorContext>? options = null)
     {
         options ??= _ => { };
         services.Configure(options);

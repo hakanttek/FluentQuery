@@ -1,6 +1,6 @@
 ﻿namespace FluentQuery;
 
-public class ExecutorOptions
+public class ExecutorContext
 {
     public ConnectionFactory ConnectionFactory { get; set; } = ConnectionFactory.InMemory;
 }

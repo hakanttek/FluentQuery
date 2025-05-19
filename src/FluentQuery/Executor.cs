@@ -8,9 +8,9 @@ public class Executor : IExecutor
 {
     private readonly IColumnMapper _mapper;
 
-    private readonly ExecutorOptions _options;
+    private readonly ExecutorContext _options;
 
-    public Executor(IColumnMapper mapper, IOptions<ExecutorOptions> options)
+    public Executor(IColumnMapper mapper, IOptions<ExecutorContext> options)
     {
         _mapper = mapper;
         _options = options.Value;
