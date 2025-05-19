@@ -16,7 +16,7 @@ public class ExecutorBase<TContext> : IExecutor<TContext> where TContext : Execu
         Context = contextOptions.Value;
     }
 
-    public async Task ExecuteAsync(string query, CancellationToken cancellation = default)
+    public async virtual Task ExecuteAsync(string query, CancellationToken cancellation = default)
     {
         using var connection = await Context.ConnectionFactory.OpenConnectionAsync(cancellation);
 
@@ -29,7 +29,7 @@ public class ExecutorBase<TContext> : IExecutor<TContext> where TContext : Execu
         await connection.CloseAsync();
     }
 
-    public async IAsyncEnumerable<T> Execute<T>(string query, [EnumeratorCancellation] CancellationToken cancellation = default)
+    public async virtual IAsyncEnumerable<T> Execute<T>(string query, [EnumeratorCancellation] CancellationToken cancellation = default)
     {
         using var connection = await Context.ConnectionFactory.OpenConnectionAsync(cancellation);
 
