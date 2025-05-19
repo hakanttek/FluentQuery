@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 
 namespace FluentQuery;
 
-public class ExecutorBase<TContext> : IExecutor<TContext> where TContext : ExecutorContext
+public class ExecutorBase<TContext> : IExecutor<TContext> where TContext : class, IExecutorContext
 {
     protected readonly IColumnMapper Mapper;
 

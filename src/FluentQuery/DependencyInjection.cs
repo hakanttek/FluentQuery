@@ -14,10 +14,10 @@ public static class DependencyInjection
         return services;
     }
 
-    public static IServiceCollection AddFluentQuery<TContext>(this IServiceCollection services)
-        where TContext : ExecutorContext, new()
+    public static IServiceCollection AddFluentQuery<TContext>(this IServiceCollection services, Action<TContext>? options = null) where TContext : class, IExecutorContext
     {
-        services.Configure<TContext>(_ => { });
+        options ??= _ => { };
+        services.Configure(options);
         services.AddSingleton<IColumnMapper, ColumnMapper>();
         services.AddSingleton<IExecutor<TContext>, ExecutorBase<TContext>>();
         return services;
