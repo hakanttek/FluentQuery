@@ -14,7 +14,7 @@ public static class CommandExtensions
         return command.Parameters.Add(parameter);
     }
 
-    public static int AddParameter<T>(this DbCommand command, CommandParameter<T> parameter)
+    public static int AddParameter<T>(this DbCommand command, CommandParameter parameter)
         => AddParameter(command, parameter.Name, parameter.Value, parameter.Type);
 
     public static DbType GetDbType<T>(this T? obj)
@@ -67,8 +67,8 @@ public static class CommandExtensions
         [typeof(object)] = DbType.Object
     };
 
-    public static CommandParameter<T> ToParam<T>(this T? obj, string name, DbType? type = null)
+    public static CommandParameter ToParam<T>(this T? obj, string name, DbType? type = null)
     {
-        return new CommandParameter<T>(name, obj, type);
+        return CommandParameter.Create(name, obj, type);
     }
 }

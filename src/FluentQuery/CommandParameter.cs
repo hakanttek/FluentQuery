@@ -2,18 +2,23 @@
 
 namespace FluentQuery;
 
-public record CommandParameter<T>
+public record CommandParameter
 {
     public readonly string Name;
 
-    public readonly T? Value;
+    public readonly object? Value;
 
     public readonly DbType Type;
 
-    public CommandParameter(string name, T? value, DbType? type = null)
+    private CommandParameter(string name, object? value, DbType type)
     {
         Name = name;
         Value = value;
-        Type = type ?? value.GetDbType();
+        Type = type;
+    }
+
+    public static CommandParameter Create<T>(string name, T? value, DbType? type = null)
+    {
+        return new CommandParameter(name, value, type ?? value.GetDbType());
     }
 }
