@@ -10,9 +10,7 @@ public static class CommandExtensions
         var parameter = command.CreateParameter();
         parameter.ParameterName = name;
         parameter.Value = value is null ? DBNull.Value : value;
-        parameter.DbType = type is null
-            ? value?.GetType().GetDbType() ?? typeof(T).GetDbType()
-            : type.Value;
+        parameter.DbType = value.GetUnderlyingType().GetDbType();
         return command.Parameters.Add(parameter);
     }
 
