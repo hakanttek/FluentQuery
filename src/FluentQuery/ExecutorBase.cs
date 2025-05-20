@@ -24,6 +24,8 @@ public class ExecutorBase<TContext> : IExecutor<TContext> where TContext : class
 
         command.CommandText = query;
 
+        command.AddParameter(parameters);
+
         await command.ExecuteNonQueryAsync(cancellation);
 
         await connection.CloseAsync();
@@ -37,10 +39,7 @@ public class ExecutorBase<TContext> : IExecutor<TContext> where TContext : class
 
         command.CommandText = query;
 
-        var parameters = command.CreateParameter();
-        parameters.ParameterName = "";
-        parameters.Value = 2;
-        command.Parameters.Add(parameters);
+        command.AddParameter(parameters);
 
         using var reader = await command.ExecuteReaderAsync(cancellation);
 
