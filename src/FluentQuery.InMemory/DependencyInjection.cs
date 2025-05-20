@@ -1,5 +1,4 @@
-﻿using FluentQuery.Interfaces;
-using Microsoft.Data.Sqlite;
+﻿using Microsoft.Data.Sqlite;
 using SQLitePCL;
 
 namespace FluentQuery.InMemory;
