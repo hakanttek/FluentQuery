@@ -14,6 +14,9 @@ public static class CommandExtensions
         return command.Parameters.Add(parameter);
     }
 
+    public static int AddParameter<T>(this DbCommand command, CommandParameter<T> parameter)
+        => AddParameter(command, parameter.Name, parameter.Value, parameter.Type);
+
     public static DbType GetDbType<T>(this T? obj)
     {
         Type type = obj?.GetType() ?? typeof(T);
