@@ -10,27 +10,57 @@ public static class CommandExtensions
         var parameter = command.CreateParameter();
         parameter.ParameterName = name;
         parameter.Value = value is null ? DBNull.Value : value;
-        parameter.DbType = value.GetUnderlyingType().GetDbType();
+        parameter.DbType = type ?? value.GetDbType();
         return command.Parameters.Add(parameter);
     }
 
-    public static Type GetUnderlyingType<T>(this T? value)
+    public static DbType GetDbType<T>(this T? obj)
     {
-        return value?.GetType()
-            ?? Nullable.GetUnderlyingType(typeof(T))
-            ?? throw new InvalidOperationException("Cannot determine the underlying type for the given value.");
+        Type type = obj?.GetType() ?? typeof(T);
+
+        return TypeMap.TryGetValue(type, out var dbType)
+            ? dbType
+            : throw new NotSupportedException($"Type '{type.FullName}' is not supported.");
     }
 
-    public static DbType GetDbType(this Type type) => type switch
+    private static readonly Dictionary<Type, DbType> TypeMap = new Dictionary<Type, DbType>(37)
     {
-        var t when t == typeof(int) => DbType.Int32,
-        var t when t == typeof(string) => DbType.String,
-        var t when t == typeof(DateTime) => DbType.DateTime,
-        var t when t == typeof(bool) => DbType.Boolean,
-        var t when t == typeof(decimal) => DbType.Decimal,
-        var t when t == typeof(Guid) => DbType.Guid,
-        var t when t == typeof(long) => DbType.Int64,
-        var t when t == typeof(double) => DbType.Double,
-        _ => throw new NotSupportedException($"Type {type} is not supported.")
+        [typeof(byte)] = DbType.Byte,
+        [typeof(sbyte)] = DbType.SByte,
+        [typeof(short)] = DbType.Int16,
+        [typeof(ushort)] = DbType.UInt16,
+        [typeof(int)] = DbType.Int32,
+        [typeof(uint)] = DbType.UInt32,
+        [typeof(long)] = DbType.Int64,
+        [typeof(ulong)] = DbType.UInt64,
+        [typeof(float)] = DbType.Single,
+        [typeof(double)] = DbType.Double,
+        [typeof(decimal)] = DbType.Decimal,
+        [typeof(bool)] = DbType.Boolean,
+        [typeof(string)] = DbType.String,
+        [typeof(char)] = DbType.StringFixedLength,
+        [typeof(Guid)] = DbType.Guid,
+        [typeof(DateTime)] = DbType.DateTime,
+        [typeof(DateTimeOffset)] = DbType.DateTimeOffset,
+        [typeof(TimeSpan)] = DbType.Time,
+        [typeof(byte[])] = DbType.Binary,
+        [typeof(byte?)] = DbType.Byte,
+        [typeof(sbyte?)] = DbType.SByte,
+        [typeof(short?)] = DbType.Int16,
+        [typeof(ushort?)] = DbType.UInt16,
+        [typeof(int?)] = DbType.Int32,
+        [typeof(uint?)] = DbType.UInt32,
+        [typeof(long?)] = DbType.Int64,
+        [typeof(ulong?)] = DbType.UInt64,
+        [typeof(float?)] = DbType.Single,
+        [typeof(double?)] = DbType.Double,
+        [typeof(decimal?)] = DbType.Decimal,
+        [typeof(bool?)] = DbType.Boolean,
+        [typeof(char?)] = DbType.StringFixedLength,
+        [typeof(Guid?)] = DbType.Guid,
+        [typeof(DateTime?)] = DbType.DateTime,
+        [typeof(DateTimeOffset?)] = DbType.DateTimeOffset,
+        [typeof(TimeSpan?)] = DbType.Time,
+        [typeof(object)] = DbType.Object
     };
 }
