@@ -16,6 +16,13 @@ public static class CommandExtensions
         return command.Parameters.Add(parameter);
     }
 
+    public static Type GetUnderlyingType<T>(this T? value)
+    {
+        return value?.GetType()
+            ?? Nullable.GetUnderlyingType(typeof(T))
+            ?? throw new InvalidOperationException("Cannot determine the underlying type for the given value.");
+    }
+
     public static DbType GetDbType(this Type type) => type switch
     {
         var t when t == typeof(int) => DbType.Int32,
