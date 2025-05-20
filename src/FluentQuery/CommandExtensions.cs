@@ -14,8 +14,14 @@ public static class CommandExtensions
         return command.Parameters.Add(parameter);
     }
 
-    public static int AddParameter<T>(this DbCommand command, CommandParameter parameter)
+    public static int AddParameter(this DbCommand command, CommandParameter parameter)
         => AddParameter(command, parameter.Name, parameter.Value, parameter.Type);
+
+    public static void AddParameter<T>(this DbCommand command, params CommandParameter[] parameters)
+    {
+        foreach (var parameter in parameters)
+            command.AddParameter(parameter);
+    }
 
     public static DbType GetDbType<T>(this T? obj)
     {
