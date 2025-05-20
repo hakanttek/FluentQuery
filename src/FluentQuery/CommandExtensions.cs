@@ -17,7 +17,7 @@ public static class CommandExtensions
     public static int AddParameter(this DbCommand command, CommandParameter parameter)
         => AddParameter(command, parameter.Name, parameter.Value, parameter.Type);
 
-    public static void AddParameter<T>(this DbCommand command, params CommandParameter[] parameters)
+    public static void AddParameter(this DbCommand command, params CommandParameter[] parameters)
     {
         foreach (var parameter in parameters)
             command.AddParameter(parameter);
