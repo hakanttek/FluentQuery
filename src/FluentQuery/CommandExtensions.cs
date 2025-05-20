@@ -63,4 +63,9 @@ public static class CommandExtensions
         [typeof(TimeSpan?)] = DbType.Time,
         [typeof(object)] = DbType.Object
     };
+
+    public static CommandParameter<T> ToParam<T>(this T? obj, string name, DbType? type = null)
+    {
+        return new CommandParameter<T>(name, obj, type);
+    }
 }
