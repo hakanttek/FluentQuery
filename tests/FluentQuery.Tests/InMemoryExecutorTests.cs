@@ -87,4 +87,50 @@ public class InMemoryExecutorTests
             Assert.That(user?.FullName, Is.EqualTo("John Doe"));
         });
     }
+
+    [Test]
+    public async Task ExecuteAsync_WithJoin_ShouldReturnUserRoleWithUser()
+    {
+        // Arrange
+        var createTableSql = @"
+        CREATE TABLE Users (
+            Id INTEGER PRIMARY KEY AUTOINCREMENT,
+            FullName TEXT
+        );
+
+        CREATE TABLE UserRoles (
+            Id INTEGER PRIMARY KEY AUTOINCREMENT,
+            UserId INTEGER,
+            Role TEXT,
+            FOREIGN KEY (UserId) REFERENCES Users(Id)
+        );
+
+        INSERT INTO Users (FullName) VALUES ('John Doe');
+
+        INSERT INTO UserRoles (UserId, Role)
+        VALUES (
+            (SELECT Id FROM Users WHERE FullName = 'John Doe'),
+            'admin'
+        );
+        ";
+
+        var selectAllSql = @"
+        SELECT R.*, U.*
+        FROM  UserRoles R
+        JOIN Users U ON R.UserId = U.Id
+        WHERE U.FullName = @fullName';
+        ";
+
+        // Act
+        await TryCrateTable(createTableSql);
+        var userRole = await _executor.Execute<UserRole>(selectAllSql, "John Doe".ToParam("fullName")).FirstOrDefaultAsync();
+
+        // Assert
+        Assert.Multiple(() =>
+        {
+            Assert.That(userRole, Is.Not.Null);
+            Assert.That(userRole?.User, Is.Not.Null);
+            Assert.That(userRole?.User?.FullName, Is.EqualTo("John Doe"));
+        });
+    }
 }

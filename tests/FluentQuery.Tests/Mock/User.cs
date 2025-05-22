@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FluentQuery.Tests.Mock;
 
-[Table("user")]
 public class User
 {
     [Column("id")]
