@@ -5,11 +5,17 @@ namespace FluentQuery;
 
 public static class DependencyInjection
 {
+    private static IServiceCollection AddStandardServices(this IServiceCollection services)
+    {
+        services.AddSingleton<IColumnMapper, ColumnMapper>();
+        return services;
+    }
+
     public static IServiceCollection AddFluentQuery(this IServiceCollection services, Action<ExecutorContext>? options = null)
     {
         options ??= _ => { };
         services.Configure(options);
-        services.AddSingleton<IColumnMapper, ColumnMapper>();
+        services.AddStandardServices();
         services.AddSingleton<IExecutor, ExecutorBase>();
         return services;
     }
@@ -18,7 +24,7 @@ public static class DependencyInjection
     {
         options ??= _ => { };
         services.Configure(options);
-        services.AddSingleton<IColumnMapper, ColumnMapper>();
+        services.AddStandardServices();
         services.AddSingleton<IExecutor<TContext>, ExecutorBase<TContext>>();
         return services;
     }
