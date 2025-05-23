@@ -22,6 +22,8 @@ public static class DependencyInjection
 
     public static IServiceCollection AddFluentQuery<TContext>(this IServiceCollection services, Action<TContext>? options = null) where TContext : class, IExecutorContext
     {
+        if (typeof(TContext) == typeof(ExecutorContext))
+            throw new ArgumentException("The generic overload AddFluentQuery<TContext> cannot be used with ExecutorContext. Please use the non-generic AddFluentQuery() method instead.", nameof(TContext));
         options ??= _ => { };
         services.Configure(options);
         services.AddStandardServices();
