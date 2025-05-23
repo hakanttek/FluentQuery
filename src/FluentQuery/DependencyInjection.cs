@@ -1,5 +1,6 @@
 ﻿using FluentQuery.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace FluentQuery;
 
@@ -7,7 +8,7 @@ public static class DependencyInjection
 {
     private static IServiceCollection AddStandardServices(this IServiceCollection services)
     {
-        services.AddSingleton<IColumnMapper, ColumnMapper>();
+        services.TryAddSingleton<IColumnMapper, ColumnMapper>();
         return services;
     }
 
