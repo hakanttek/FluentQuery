@@ -12,7 +12,7 @@ public static class DependencyInjection
 
     public static void UseInMemory(this ExecutorContext context)
     {
-        context.ConnectionFactory  = InMemory;
+        context.ConnectionFactory = InMemory;
         Batteries.Init();
     }
 }
