@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace FluentQuery;
 
-public static class Executor<TContext> where TContext : ExecutorContext
+public static class Executor<TContext> where TContext : StaticExecutorContext
 {
     private static readonly IServiceCollection Services = new ServiceCollection().AddFluentQuery();
 

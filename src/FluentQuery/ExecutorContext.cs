@@ -5,8 +5,10 @@ namespace FluentQuery;
 public class ExecutorContext : IExecutorContext
 {
 #if NET7_0_OR_GREATER
-    public required ConnectionFactory ConnectionFactory { get; set; }
+    public virtual ConnectionFactory ConnectionFactory { get; set; } = new ConnectionFactory(()
+        => throw new NotSupportedException("A ConnectionFactory has not been configured for the StaticExecutorContext. Please provide a valid ConnectionFactory instance before attempting to use this context.")
+    );
 #else
-    public ConnectionFactory ConnectionFactory { get; set; } = null!;
+    public virtual ConnectionFactory ConnectionFactory { get; set; } = null!;
 #endif
 }
