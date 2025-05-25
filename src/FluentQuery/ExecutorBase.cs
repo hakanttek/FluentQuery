@@ -58,3 +58,11 @@ public class ExecutorBase : ExecutorBase<ExecutorContext>, IExecutor<ExecutorCon
     {
     }
 }
+
+public sealed class StaticExecutor<TContext> : ExecutorBase<TContext>, IStaticExecutor<TContext> where TContext : StaticExecutorContext, new()
+{
+    public StaticExecutor(IColumnMapper mapper) : base(mapper, StaticExecutorContext.Create<TContext>().ToOptions())
+    {
+        
+    }
+}

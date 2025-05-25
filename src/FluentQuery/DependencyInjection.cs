@@ -31,4 +31,11 @@ public static class DependencyInjection
         services.AddSingleton<IExecutor<TContext>, ExecutorBase<TContext>>();
         return services;
     }
+
+    internal static IServiceCollection AddStaticFluentQuery(this IServiceCollection services)
+    {
+        services.AddStandardServices();
+        services.TryAdd(ServiceDescriptor.Singleton(typeof(IStaticExecutor<>), typeof(StaticExecutor<>)));
+        return services;
+    }
 }

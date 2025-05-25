@@ -12,3 +12,7 @@ public interface IExecutor<TContext>
 public interface IExecutor : IExecutor<ExecutorContext>
 {
 }
+
+public interface IStaticExecutor<TContext> : IExecutor<TContext> where TContext : StaticExecutorContext
+{
+}
