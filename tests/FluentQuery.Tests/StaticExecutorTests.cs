@@ -1,8 +1,5 @@
-﻿using FluentQuery.InMemory;
-using FluentQuery.Interfaces;
-using FluentQuery.Tests.Mock;
+﻿using FluentQuery.Tests.Mock;
 using Microsoft.Data.Sqlite;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace FluentQuery.Tests;
 
