@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="9.0.5" />
-    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.11" />
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.11" PrivateAssets="none" />
   </ItemGroup>
 
   <ItemGroup>
