@@ -11,7 +11,7 @@
     <Description>FluentQuery.InMemory provides in-memory database support for the FluentQuery library for testing and prototyping scenarios.</Description>
     <PackageTags>sql mapping orm fluent data in-memory test mock prototype</PackageTags>
     <RepositoryUrl>https://github.com/hakanttek/FluentQuery/tree/master/src/FluentQuery.InMemory</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/hakanttek/FluentQuery/tree/master/src/FluentQuery.InMemory</PackageProjectUrl>
+    <PackageProjectUrl>https://fluentquery.hakantek.com</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.0</AssemblyVersion>
