@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.Data.Common;
 
-namespace FluentQuery;
+namespace FluentORM;
 
 public static class CommandExtensions
 {

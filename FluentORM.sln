@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35806.99
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentQuery", "src\FluentQuery\FluentQuery.csproj", "{11C29010-E1B4-46AC-A051-6FC80213E5A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentORM", "src\FluentORM\FluentORM.csproj", "{11C29010-E1B4-46AC-A051-6FC80213E5A5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentQuery.Tests", "tests\FluentQuery.Tests\FluentQuery.Tests.csproj", "{258484FE-4D13-4A54-B66C-3395CBA281C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentORM.Tests", "tests\FluentORM.Tests\FluentORM.Tests.csproj", "{258484FE-4D13-4A54-B66C-3395CBA281C8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0DAB7433-3E81-4A66-AA51-D80852761058}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentQuery.InMemory", "src\FluentQuery.InMemory\FluentQuery.InMemory.csproj", "{195843A6-008A-4A01-A927-98FAC6B6168A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentORM.InMemory", "src\FluentORM.InMemory\FluentORM.InMemory.csproj", "{195843A6-008A-4A01-A927-98FAC6B6168A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

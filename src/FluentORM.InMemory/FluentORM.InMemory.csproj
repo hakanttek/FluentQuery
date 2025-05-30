@@ -5,18 +5,18 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
-    <PackageId>FluentQuery.InMemory</PackageId>
+    <PackageId>FluentORM.InMemory</PackageId>
     <Version>1.0.0</Version>
     <Authors>Hakan Tek</Authors>
-    <Description>FluentQuery.InMemory provides in-memory database support for the FluentQuery library for testing and prototyping scenarios.</Description>
+    <Description>FluentORM.InMemory provides in-memory database support for the FluentORM library for testing and prototyping scenarios.</Description>
     <PackageTags>sql mapping orm fluent data in-memory test mock prototype</PackageTags>
-    <RepositoryUrl>https://github.com/hakanttek/FluentQuery/tree/master/src/FluentQuery.InMemory</RepositoryUrl>
-    <PackageProjectUrl>https://fluentquery.hakantek.com</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/hakanttek/FluentORM/tree/master/src/FluentORM.InMemory</RepositoryUrl>
+    <PackageProjectUrl>https://FluentORM.hakantek.com</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <FileVersion>1.0.0</FileVersion>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/hakanttek/FluentQuery/refs/heads/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/hakanttek/FluentORM/refs/heads/master/LICENSE.txt</PackageLicenseUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
@@ -47,7 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FluentQuery\FluentQuery.csproj" />
+    <ProjectReference Include="..\FluentORM\FluentORM.csproj" />
   </ItemGroup>
 
 </Project>

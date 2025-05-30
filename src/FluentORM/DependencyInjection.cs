@@ -1,8 +1,8 @@
-﻿using FluentQuery.Interfaces;
+﻿using FluentORM.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace FluentQuery;
+namespace FluentORM;
 
 public static class DependencyInjection
 {
@@ -12,7 +12,7 @@ public static class DependencyInjection
         return services;
     }
 
-    public static IServiceCollection AddFluentQuery(this IServiceCollection services, Action<ExecutorContext>? options = null)
+    public static IServiceCollection AddFluentORM(this IServiceCollection services, Action<ExecutorContext>? options = null)
     {
         options ??= _ => { };
         services.Configure(options);
@@ -21,10 +21,10 @@ public static class DependencyInjection
         return services;
     }
 
-    public static IServiceCollection AddFluentQuery<TContext>(this IServiceCollection services, Action<TContext>? options = null) where TContext : class, IExecutorContext
+    public static IServiceCollection AddFluentORM<TContext>(this IServiceCollection services, Action<TContext>? options = null) where TContext : class, IExecutorContext
     {
         if (typeof(TContext) == typeof(ExecutorContext))
-            throw new ArgumentException("The generic overload AddFluentQuery<TContext> cannot be used with ExecutorContext. Please use the non-generic AddFluentQuery() method instead.", nameof(TContext));
+            throw new ArgumentException("The generic overload AddFluentORM<TContext> cannot be used with ExecutorContext. Please use the non-generic AddFluentORM() method instead.", nameof(TContext));
         options ??= _ => { };
         services.Configure(options);
         services.AddStandardServices();
@@ -32,7 +32,7 @@ public static class DependencyInjection
         return services;
     }
 
-    internal static IServiceCollection AddStaticFluentQuery(this IServiceCollection services)
+    internal static IServiceCollection AddStaticFluentORM(this IServiceCollection services)
     {
         services.AddStandardServices();
         services.TryAdd(ServiceDescriptor.Singleton(typeof(IStaticExecutor<>), typeof(StaticExecutor<>)));

@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace FluentQuery;
+namespace FluentORM;
 
 public record CommandParameter
 {

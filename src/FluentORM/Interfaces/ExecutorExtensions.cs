@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 
-namespace FluentQuery.Interfaces;
+namespace FluentORM.Interfaces;
 
 public static class ExecutorExtensions
 {

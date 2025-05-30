@@ -1,4 +1,4 @@
-﻿namespace FluentQuery.Interfaces;
+﻿namespace FluentORM.Interfaces;
 
 public interface IExecutorContext
 {

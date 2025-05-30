@@ -1,11 +1,11 @@
-﻿using FluentQuery.Interfaces;
+﻿using FluentORM.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FluentQuery;
+namespace FluentORM;
 
 public static class Executor<TContext> where TContext : StaticExecutorContext, IExecutorContext, new()
 {
-    private static readonly IServiceCollection Services = new ServiceCollection().AddStaticFluentQuery();
+    private static readonly IServiceCollection Services = new ServiceCollection().AddStaticFluentORM();
 
     private static readonly Lazy<IServiceProvider> LazyProvider = new(Services.BuildServiceProvider);
 

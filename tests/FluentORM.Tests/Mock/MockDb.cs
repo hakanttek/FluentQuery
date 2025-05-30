@@ -1,6 +1,6 @@
-﻿using FluentQuery.InMemory;
+﻿using FluentORM.InMemory;
 
-namespace FluentQuery.Tests.Mock;
+namespace FluentORM.Tests.Mock;
 
 internal class MockDb : StaticExecutorContext
 {

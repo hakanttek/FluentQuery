@@ -1,7 +1,7 @@
-﻿using FluentQuery.Interfaces;
+﻿using FluentORM.Interfaces;
 using System.Data.Common;
 
-namespace FluentQuery;
+namespace FluentORM;
 
 // TODO: Create mapping profile to increasee performance
 public class ColumnMapper : IColumnMapper

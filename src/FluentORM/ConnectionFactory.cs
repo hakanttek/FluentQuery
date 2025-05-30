@@ -1,6 +1,6 @@
 ﻿using System.Data.Common;
 
-namespace FluentQuery;
+namespace FluentORM;
 
 public class ConnectionFactory<TDbConnection> where TDbConnection : DbConnection
 {

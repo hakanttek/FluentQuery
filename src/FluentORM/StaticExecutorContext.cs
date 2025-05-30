@@ -1,6 +1,6 @@
-﻿using FluentQuery.Interfaces;
+﻿using FluentORM.Interfaces;
 
-namespace FluentQuery;
+namespace FluentORM;
 
 public abstract class StaticExecutorContext : ExecutorContext, IExecutorContext
 {

@@ -1,15 +1,31 @@
-﻿using FluentQuery.Tests.Mock;
+﻿using FluentORM.InMemory;
+using FluentORM.Interfaces;
+using FluentORM.Tests.Mock;
 using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace FluentQuery.Tests;
+namespace FluentORM.Tests;
 
-public class StaticExecutorTests
+public class InMemoryExecutorTests
 {
+    private IExecutor _executor;
+
+    [SetUp]
+    public void Setup()
+    {
+        var services = new ServiceCollection();
+        services.AddFluentORM(opt => opt.UseInMemory());
+
+        var serviceProvider = services.BuildServiceProvider();
+
+        _executor = serviceProvider.GetRequiredService<IExecutor>();
+    }
+
     private async Task<bool> TryCrateTable(string sql)
     {
         try
         {
-            await Executor<MockDb>.Static.ExecuteAsync(sql);
+            await _executor.ExecuteAsync(sql);
             return true;
         }
         catch (SqliteException)
@@ -34,7 +50,7 @@ public class StaticExecutorTests
 
         // Act
         await TryCrateTable(createTableSql);
-        var user = await Executor<MockDb>.Static.Execute<User>(selectAllSql).FirstOrDefaultAsync();
+        var user = await _executor.Execute<User>(selectAllSql).FirstOrDefaultAsync();
 
         // Assert
         Assert.Multiple(() =>
@@ -61,7 +77,7 @@ public class StaticExecutorTests
 
         // Act
         await TryCrateTable(createTableSql);
-        var user = await Executor<MockDb>.Static.Execute<User>(selectAllSql, "John Doe".ToParam("fullName")).FirstOrDefaultAsync();
+        var user = await _executor.Execute<User>(selectAllSql, "John Doe".ToParam("fullName")).FirstOrDefaultAsync();
 
         // Assert
         Assert.Multiple(() =>

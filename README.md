@@ -1,10 +1,10 @@
 <p align="center">
-  <a href="http://fluent-query.hakantek.com/" target="blank"><img src="https://raw.githubusercontent.com/hakanttek/FluentQuery/e37ea2e42c27d99a8478219ee92a3873fc18c8ba/assest/icon.svg" width="120" alt="FluentQuery Logo" /></a>
+  <a href="http://fluent-query.hakantek.com/" target="blank"><img src="https://raw.githubusercontent.com/hakanttek/FluentORM/e37ea2e42c27d99a8478219ee92a3873fc18c8ba/assest/icon.svg" width="120" alt="FluentORM Logo" /></a>
 </p>
   <p align="center">A lightweight <a href="http://nodejs.org" target="_blank">.NET</a> library for automatically mapping SQL query results to strongly typed objects.</p>
     <p align="center">
-<a href="https://www.nuget.org/packages/FluentQuery" target="_blank"><img src="https://img.shields.io/nuget/v/FluentQuery.svg?style=flat" alt="NuGet Version" /></a>
-<a href="https://raw.githubusercontent.com/hakanttek/FluentQuery/refs/heads/master/LICENSE.txt" target="_blank"><img src="https://img.shields.io/github/license/hakanttek/FluentQuery" alt="Package License" /></a>
+<a href="https://www.nuget.org/packages/FluentORM" target="_blank"><img src="https://img.shields.io/nuget/v/FluentORM.svg?style=flat" alt="NuGet Version" /></a>
+<a href="https://raw.githubusercontent.com/hakanttek/FluentORM/refs/heads/master/LICENSE.txt" target="_blank"><img src="https://img.shields.io/github/license/hakanttek/FluentORM" alt="Package License" /></a>
 </p>
 
 ---
@@ -20,12 +20,12 @@
 Install via NuGet:
 
 ```bash
-dotnet add package FluentQuery
+dotnet add package FluentORM
 ```
 
 Or use the Package Manager:
 ```bash
-Install-Package FluentQuery
+Install-Package FluentORM
 ```
 ---
 ## 🚀 Usage Example
@@ -42,14 +42,14 @@ public class User
 }
 ```
 
-### Register FluentQuery with Dependency Injection
+### Register FluentORM with Dependency Injection
 ##### Configure with a custom connection factory
 ```csharp
-services.AddFluentQuery(opt => opt.ConnectionFactory = () => CreateDbConnection(cnnStr));
+services.AddFluentORM(opt => opt.ConnectionFactory = () => CreateDbConnection(cnnStr));
 ```
-##### Alternatively, use an extension library (e.g., `FluentQuery.InMemory`)
+##### Alternatively, use an extension library (e.g., `FluentORM.InMemory`)
 ```csharp
-services.AddFluentQuery(opt => opt.UseInMemory());
+services.AddFluentORM(opt => opt.UseInMemory());
 ```
 
 ### Execute SQL Queries
@@ -85,4 +85,4 @@ var user = await Executor<MockDb>.Static.Execute<User>(selectAllSql).FirstOrDefa
 - Website - [flow-query.hakantek.com](https://flow-query.hakantek.com/)
 ---
 ## 📋 License
-FlowQuery is [MIT licensed](https://raw.githubusercontent.com/hakanttek/FluentQuery/refs/heads/master/LICENSE.txt)
+FlowQuery is [MIT licensed](https://raw.githubusercontent.com/hakanttek/FluentORM/refs/heads/master/LICENSE.txt)

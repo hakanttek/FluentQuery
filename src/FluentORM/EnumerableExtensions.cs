@@ -1,4 +1,4 @@
-﻿namespace FluentQuery;
+﻿namespace FluentORM;
 
 public static class EnumerableExtensions
 {

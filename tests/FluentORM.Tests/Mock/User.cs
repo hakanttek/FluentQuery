@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FluentQuery.Tests.Mock;
+namespace FluentORM.Tests.Mock;
 
 public class User
 {

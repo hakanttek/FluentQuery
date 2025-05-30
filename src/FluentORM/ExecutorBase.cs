@@ -1,8 +1,8 @@
-﻿using FluentQuery.Interfaces;
+﻿using FluentORM.Interfaces;
 using System.Runtime.CompilerServices;
 using Microsoft.Extensions.Options;
 
-namespace FluentQuery;
+namespace FluentORM;
 
 public class ExecutorBase<TContext> : IExecutor<TContext> where TContext : class, IExecutorContext
 {

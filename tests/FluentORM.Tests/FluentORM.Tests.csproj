@@ -28,8 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\FluentQuery.InMemory\FluentQuery.InMemory.csproj" />
-    <ProjectReference Include="..\..\src\FluentQuery\FluentQuery.csproj" />
+    <ProjectReference Include="..\..\src\FluentORM.InMemory\FluentORM.InMemory.csproj" />
+    <ProjectReference Include="..\..\src\FluentORM\FluentORM.csproj" />
   </ItemGroup>
 
   <ItemGroup>

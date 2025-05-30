@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.Sqlite;
 using SQLitePCL;
 
-namespace FluentQuery.InMemory;
+namespace FluentORM.InMemory;
 
 public static class DependencyInjection
 {
