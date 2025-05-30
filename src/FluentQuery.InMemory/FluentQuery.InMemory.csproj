@@ -16,7 +16,7 @@
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <FileVersion>1.0.0</FileVersion>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/hakanttek/FluentQuery/refs/heads/master/LICENSE.txt</PackageLicenseUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
