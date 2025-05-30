@@ -63,7 +63,7 @@ var query = "SELECT * FROM Users WHERE FullName = @fullName";
 var user = await _executor.Execute<User>(query, "John Doe".ToParam("fullName")).FirstOrDefaultAsync();
 ```
 
-### Alternatively, use static executor
+### Alternatively, use a static executor
 ##### Configure a `StaticExecutorContext`
 ```csharp
 public class MockDb : StaticExecutorContext
@@ -74,7 +74,7 @@ public class MockDb : StaticExecutorContext
     }
 }
 ```
-##### Map Results to a Strongly-Typed Model
+##### Execute query via Executor<TContext>.Static
 ```csharp
 var query = "SELECT * FROM Users WHERE FullName = @fullName";
 var user = await Executor<MockDb>.Static.Execute<User>(selectAllSql).FirstOrDefaultAsync();
