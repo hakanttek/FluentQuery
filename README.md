@@ -45,6 +45,7 @@ public class User
   public string Name { get; set; }
 }
 ```
+
 ### Register FluentQuery with Dependency Injection
 ##### Configure with a custom connection factory
 ```csharp
@@ -54,24 +55,38 @@ services.AddFluentQuery(opt => opt.ConnectionFactory = () => CreateDbConnection(
 ```csharp
 services.AddFluentQuery(opt => opt.UseInMemory());
 ```
+
 ### Execute SQL Queries
 ##### Without Returning Results
 ```csharp
 await _executor.ExecuteAsync("INSERT INTO Users (FullName) VALUES ('John Doe');");
 ```
-##### Map Results to a Strongly-Typed Model
+##### Map results to a strongly-typed model
 ```csharp
 var query = "SELECT * FROM Users WHERE FullName = @fullName";
 var user = await _executor.Execute<User>(query, "John Doe".ToParam("fullName")).FirstOrDefaultAsync();
 ```
+
 ### Alternatively, use static executor
-##### Without Returning Results
+##### Configure a `StaticExecutorContext`
 ```csharp
-await _executor.ExecuteAsync("INSERT INTO Users (FullName) VALUES ('John Doe');");
+public class MockDb : StaticExecutorContext
+{
+    public override void Configure(StaticExecutorContext context)
+    {
+        context.UseInMemory();
+    }
+}
 ```
 ##### Map Results to a Strongly-Typed Model
 ```csharp
 var query = "SELECT * FROM Users WHERE FullName = @fullName";
-var user = await _executor.Execute<User>(query, "John Doe".ToParam("fullName")).FirstOrDefaultAsync();
+var user = await Executor<MockDb>.Static.Execute<User>(selectAllSql).FirstOrDefaultAsync();
 ```
 ---
+## 📬 Stay in touch
+- Author - [Hakan Tek](https://www.hakantek.com/)
+- Website - [flow-query.hakantek.com](https://flow-query.hakantek.com/)
+---
+## 📋 License
+FlowQuery is [MIT licensed](https://raw.githubusercontent.com/hakanttek/FluentQuery/refs/heads/master/LICENSE.txt)
