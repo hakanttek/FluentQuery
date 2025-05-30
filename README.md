@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://fluent-query.hakantek.com/" target="blank"><img src="https://raw.githubusercontent.com/hakanttek/FluentORM/e37ea2e42c27d99a8478219ee92a3873fc18c8ba/assest/icon.svg" width="120" alt="FluentORM Logo" /></a>
+  <a href="http://fluent-orm.hakantek.com/" target="blank"><img src="https://raw.githubusercontent.com/hakanttek/FluentORM/e37ea2e42c27d99a8478219ee92a3873fc18c8ba/assest/icon.svg" width="120" alt="FluentORM Logo" /></a>
 </p>
   <p align="center">A lightweight <a href="http://nodejs.org" target="_blank">.NET</a> library for automatically mapping SQL query results to strongly typed objects.</p>
     <p align="center">
@@ -82,7 +82,7 @@ var user = await Executor<MockDb>.Static.Execute<User>(selectAllSql).FirstOrDefa
 ---
 ## 📬 Stay in touch
 - Author - [Hakan Tek](https://www.hakantek.com/)
-- Website - [flow-query.hakantek.com](https://flow-query.hakantek.com/)
+- Website - [fluent-orm.hakantek.com](https://fluent-orm.hakantek.com/)
 ---
 ## 📋 License
-FlowQuery is [MIT licensed](https://raw.githubusercontent.com/hakanttek/FluentORM/refs/heads/master/LICENSE.txt)
+FluentORM is [MIT licensed](https://raw.githubusercontent.com/hakanttek/FluentORM/refs/heads/master/LICENSE.txt)
