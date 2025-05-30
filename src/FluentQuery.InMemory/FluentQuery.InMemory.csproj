@@ -12,12 +12,11 @@
     <PackageTags>sql mapping orm fluent data in-memory test mock prototype</PackageTags>
     <RepositoryUrl>https://github.com/hakanttek/FluentQuery/tree/master/src/FluentQuery.InMemory</RepositoryUrl>
     <PackageProjectUrl>https://fluentquery.hakantek.com</PackageProjectUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <FileVersion>1.0.0</FileVersion>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/hakanttek/FluentQuery/refs/heads/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
@@ -34,7 +33,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FluentQuery\FluentQuery.csproj" />
+    <None Include="..\..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
